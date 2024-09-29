@@ -1,0 +1,10 @@
+[package]
+name = "myosm"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+chrono = "0.4.38"
+quick-xml = "0.36.2"
+serde = { version="1.0.210" ,features = ["derive"]}
+serde-xml-rs = "0.6.0"
