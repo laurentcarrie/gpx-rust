@@ -5,6 +5,8 @@ use serde_xml_rs::from_str;
 
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct IOGpx {
+    version: String,
+    creator: String,
     metadata: IOMetadata,
     trk: Vec<Event0>,
     // trkseg: Trkseg
@@ -68,11 +70,9 @@ fn seg_of_ioseg(input: &Event0) -> Trkseg {
             hdop: p.hdop.clone(),
         })
         .collect();
-    let seg = Trkseg{trkpt:points} ;
+    let seg = Trkseg { trkpt: points };
     return seg;
 }
-
-
 
 pub fn gpx_of_xml_string(data: String) -> Result<Gpx, MyError> {
     let iogpx: IOGpx = from_str(&data)?;
@@ -85,6 +85,8 @@ pub fn gpx_of_xml_string(data: String) -> Result<Gpx, MyError> {
     // let segs = vec![] ;
 
     let gpx: Gpx = Gpx {
+        version: iogpx.version,
+        creator: iogpx.creator,
         metadata: metadata,
         trk: segs,
     };

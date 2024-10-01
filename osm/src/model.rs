@@ -1,4 +1,6 @@
 pub struct Gpx {
+    pub version: String,
+    pub creator: String,
     pub metadata: Metadata,
     pub trk: Vec<Trkseg>,
 }
