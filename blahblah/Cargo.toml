@@ -1,0 +1,9 @@
+[package]
+name = "blahblah"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+geo = "0.28.0"
+geojson = "0.24.1"
+gpx = "0.10.0"
