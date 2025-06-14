@@ -1,0 +1,9 @@
+[package]
+name = "checklink"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+log = "0.4.26"
+regex = "1.11.1"
+simple_logger = "5.0.0"
