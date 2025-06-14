@@ -43,4 +43,4 @@ jobs:
 
       - name: publish          
         run: |
-          cd lib && cargo publish --token ${{ secrets.CARGO_REGISTRY_TOKEN }}
+          cargo publish --token ${{ secrets.CARGO_REGISTRY_TOKEN }}
