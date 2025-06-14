@@ -1,0 +1,93 @@
+%% srs.sty: A stylesheet for Software Requirements Specification (SRS) documents
+
+% Page settings
+\ProvidesPackage{srs}
+\RequirePackage{geometry}
+\geometry{a4paper, margin=1in}
+
+% Header and footer settings
+\RequirePackage{fancyhdr}
+\fancypagestyle{SRS}{
+    \fancyhf{}
+    \fancyhead[L]{Software Requirements Specification}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0.4pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+\pagestyle{SRS}
+
+% Section and subsection formatting
+\RequirePackage{titlesec}
+\titleformat{\section}{\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries}{\thesubsubsection}{1em}{}
+
+% List formatting
+\RequirePackage{enumitem}
+\setlist{nosep}
+
+% Hyperlinks and navigation
+\RequirePackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=cyan,
+    pdftitle={Software Requirements Specification},
+    pdfauthor={Your Name or Organization},
+}
+
+% Table of contents styling
+\RequirePackage{tocloft}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsubsecfont}{\bfseries}
+\setlength{\cftbeforesecskip}{1.5pt}
+
+% Custom title page settings
+\newcommand{\SRSTitlePage}[2]{
+    \begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    {\Huge \textbf{Software Requirements Specification}} \\
+    \vspace{1cm}
+    {\Large \textbf{Project Name:} #1} \\
+    \vspace{0.5cm}
+    \textbf{Version:} #2 \\
+    \vspace{2cm}
+    \textbf{Prepared by: Your Name or Organization} \\
+    \vspace{1cm}
+    \textbf{Date: \today} \\
+    \vfill
+    \end{titlepage}
+}
+
+% Enable graphics and long tables
+\RequirePackage{graphicx}
+\RequirePackage{longtable}
+
+% Appendices section
+\newcommand{\SRSAppendix}{
+    \appendix
+    \section{Appendix}
+}
+
+
+
+% Q&A Macros
+\usepackage{xcolor}
+
+\newcounter{counterreq}
+\setcounter{counterreq}{0}
+\newcommand{\req}[1]{%
+    \stepcounter{counterreq}
+    \vspace{0.5cm}
+    \noindent\textbf{\textcolor{blue}{Req \thecounterreq: #1}}%
+    \vspace{0.3cm}
+}
+
+
+
+% Answer formatting with color
+\newcommand{\answer}[1]{%
+    \noindent\textbf{\textcolor{green}{A:}} #1%
+    \vspace{0.5cm}
+}

@@ -1,0 +1,7 @@
+[book]
+authors = ["Laurent Carrié"]
+language = "en"
+multilingual = false
+src = "src"
+title = "some gpx utilities"
+    
