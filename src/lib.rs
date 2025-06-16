@@ -69,3 +69,5 @@ pub mod course;
 /// if you load the kml file into google/mymaps, or in google earth, you should get
 ///  ![Texte alternatif](x.png "Titre de l'image").
 pub mod kml;
+
+pub mod tcx;
