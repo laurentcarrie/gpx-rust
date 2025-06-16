@@ -52,6 +52,9 @@
 /// write_kml(&doc,&PathBuf::from("eiffel-tower.kml")).expect("write kml") ;
 /// }
 /// ```
+///
+
+/// the kml data model
 pub mod model;
 
 /// writes a kml document to .kml file
