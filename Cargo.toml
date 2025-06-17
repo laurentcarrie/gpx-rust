@@ -24,5 +24,7 @@ quick-xml = "0.37.5"
 quote = "1.0.37"
 regex = "1.11.1"
 simple-logging = "2.0.2"
+strum = { version = "0.27.1", features = ["derive", "strum_macros"] }
+strum_macros = "0.27.1"
 tcx = "0.9.3"
 

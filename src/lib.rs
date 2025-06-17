@@ -1,3 +1,10 @@
+//! this crate allows you to:
+//! - transform a garmin workout tcx file to a polars dataframe
+//! - allow you to manipulate this dataframe to :
+//!     - have custom plots of your workout
+//!     - have custom kml output of your workout, that you can load in google earth
+
+
 pub mod course;
 
 #[allow(clippy::needless_doctest_main)]
@@ -70,4 +77,10 @@ pub mod course;
 ///  ![Texte alternatif](x.png "Titre de l'image").
 pub mod kml;
 
+
+/// load tcx file to polars dataframe
 pub mod tcx;
+
+/// some helpers to transform the workout dataframe
+/// a utitilty to a kml document from the dataframe
+pub mod transform ;
