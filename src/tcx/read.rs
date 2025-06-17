@@ -160,7 +160,7 @@ use polars::prelude::*;
 /// the csv file contains a summary of the training, we are interhat
 ///
 /// and join the two on the circuit field so you can have the interval description
-pub fn get_df(tcx_file: String) -> Result<DataFrame, Box<dyn std::error::Error>> {
+pub fn df_of_tcx_file(tcx_file: String) -> Result<DataFrame, Box<dyn std::error::Error>> {
     // let summary: DataFrame = summary(&tcx_file)?;
 
     let tcx = tcx::read_file(tcx_file.as_str())?;
@@ -203,7 +203,7 @@ pub fn get_df(tcx_file: String) -> Result<DataFrame, Box<dyn std::error::Error>>
     let y = Series::new("y".into(), v.iter().map(|x| x.1).collect::<Vec<_>>());
     let distance = Series::new("distance".into(), v.iter().map(|x| x.2).collect::<Vec<_>>());
     let hr = Series::new("hr".into(), v.iter().map(|x| x.3).collect::<Vec<_>>());
-    // let time = Series::new("time".into(), v.iter().map(|x| (*x).4).collect::<Vec<_>>());
+    let time = Series::new("time".into(), v.iter().map(|x| (*x).4).collect::<Vec<_>>());
     let circuit = Series::new("circuit".into(), v.iter().map(|x| x.5).collect::<Vec<_>>());
 
     let (_speed0, _allure0, speed, allure) = {
@@ -261,7 +261,7 @@ pub fn get_df(tcx_file: String) -> Result<DataFrame, Box<dyn std::error::Error>>
         x.into(),
         y.into(),
         hr.into(),
-        // time.into(),
+        time.into(),
         distance.into(),
         circuit.into(),
         // speed0.into(),
