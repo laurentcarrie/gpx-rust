@@ -3,6 +3,12 @@
 //! - allow you to manipulate this dataframe to :
 //!     - have custom plots of your workout
 //!     - have custom kml output of your workout, that you can load in google earth
+//!
+//! # simple example
+//! blah blah
+//!
+//! # second example
+//! blah blah
 
 pub mod course;
 

@@ -1,0 +1,17 @@
+*.rs text=unix
+Cargo*.* text=unix
+*.toml text=unix
+*.md text=unix
+*.sh text=unix
+*.yaml text=unix
+*.yml text=unix
+*.json text=unix
+*.txt text=unix
+*.xml text=unix
+*.html text=unix
+*.css text=unix
+*.js text=unix
+*.ts text=unix
+*.scss text=unix
+*.sass text=unix    
+

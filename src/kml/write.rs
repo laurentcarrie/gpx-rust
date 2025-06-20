@@ -5,13 +5,13 @@ use std::{fs::File, io::Write, path::PathBuf};
 use quick_xml::{
     Writer,
     // events::{BytesCData, BytesDecl, BytesEnd, BytesStart, BytesText, Event},
-    events::{BytesDecl, BytesEnd, BytesStart, BytesText, Event},
+    events::{BytesCData, BytesDecl, BytesEnd, BytesStart, BytesText, Event},
 };
 
 use crate::kml::model as M;
 
 enum ContentType {
-    // CData,
+    CData,
     Text,
 }
 
@@ -23,7 +23,7 @@ fn write_element(
 ) -> Result<(), Box<dyn std::error::Error>> {
     writer.write_event(Event::Start(BytesStart::new(tag)))?;
     match content_type {
-        // ContentType::CData => writer.write_event(Event::CData(BytesCData::new(content)))?,
+        ContentType::CData => writer.write_event(Event::CData(BytesCData::new(content)))?,
         ContentType::Text => writer.write_event(Event::Text(BytesText::new(content)))?,
     }
     writer.write_event(Event::End(BytesEnd::new(tag)))?;
@@ -127,7 +127,7 @@ fn write_style(
         ContentType::Text,
     )?;
     writer.write_event(Event::Start(BytesStart::new("Icon")))?;
-    write_element(writer, "href", style.icon_url.as_str(), ContentType::Text)?;
+    write_element(writer, "href", style.icon_url.as_str(), ContentType::CData)?;
     writer.write_event(Event::End(BytesEnd::new("Icon")))?;
     let mut root = BytesStart::new("hotSpot");
     root.push_attribute(("x", "64"));
@@ -135,6 +135,11 @@ fn write_style(
     root.push_attribute(("xunits", "pixels"));
     root.push_attribute(("yunits", "insetPixels"));
     writer.write_event(Event::End(BytesEnd::new("IconStyle")))?;
+
+    // writer.write_event(Event::Start(BytesStart::new("LineStyle")))?;
+    // write_element(writer, "color", "ff2dc0fb", ContentType::Text)?;
+    // writer.write_event(Event::End(BytesEnd::new("LineStyle")))?;
+
     writer.write_event(Event::End(BytesEnd::new("Style")))?;
 
     // let mut root = BytesStart::new("StyleMap");

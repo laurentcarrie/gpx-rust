@@ -1,3 +1,4 @@
+// use crate::transform::filter::add_filter_columns;
 use itertools::izip;
 // use quote::{format_ident, quote};
 // use core::panic;
@@ -87,7 +88,7 @@ use polars::prelude::*;
 //                 .alias("Durée"),
 //         ])
 //         .with_columns(vec![
-//             col("Temps_cumule_u32")
+//             col("Temps_cumule_u32")allowe
 //                 .cast(DataType::Duration(TimeUnit::Milliseconds))
 //                 .alias("Temps cumulé"),
 //         ])
@@ -203,7 +204,7 @@ pub fn df_of_tcx_file(tcx_file: String) -> Result<DataFrame, Box<dyn std::error:
     let y = Series::new("y".into(), v.iter().map(|x| x.1).collect::<Vec<_>>());
     let distance = Series::new("distance".into(), v.iter().map(|x| x.2).collect::<Vec<_>>());
     let hr = Series::new("hr".into(), v.iter().map(|x| x.3).collect::<Vec<_>>());
-    let time = Series::new("time".into(), v.iter().map(|x| (*x).4).collect::<Vec<_>>());
+    let time = Series::new("time".into(), v.iter().map(|x| x.4).collect::<Vec<_>>());
     let circuit = Series::new("circuit".into(), v.iter().map(|x| x.5).collect::<Vec<_>>());
 
     let (_speed0, _allure0, speed, allure) = {
@@ -268,8 +269,9 @@ pub fn df_of_tcx_file(tcx_file: String) -> Result<DataFrame, Box<dyn std::error:
         // allure0.into(),
         speed.into(),
         allure.into(),
-    ])
-    .unwrap();
+    ])?;
+
+    // let df = add_filter_columns(&mut df,10.0,1.0)? ;
 
     // let df: DataFrame = df
     //     .lazy()
